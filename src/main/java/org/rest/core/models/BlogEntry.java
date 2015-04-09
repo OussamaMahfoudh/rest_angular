@@ -1,20 +1,12 @@
-package org.rest.models;
+package org.rest.core.models;
+
+import org.rest.core.models.base.BaseModel;
 
 /**
  * Created by oussama on 4/8/2015.
  */
-public class BlogEntry {
-
-    private Integer id;
+public class BlogEntry extends BaseModel{
     private String blogEntryName;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getBlogEntryName() {
         return blogEntryName;

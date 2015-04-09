@@ -1,6 +1,6 @@
-package org.rest.controllers;
+package org.rest.mvc.controllers;
 
-import org.rest.models.BlogEntry;
+import org.rest.core.models.BlogEntry;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
