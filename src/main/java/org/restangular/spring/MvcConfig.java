@@ -1,4 +1,4 @@
-package org.rest.spring;
+package org.restangular.spring;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

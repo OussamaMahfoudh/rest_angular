@@ -1,4 +1,4 @@
-package org.rest.spring;
+package org.restangular.spring;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-@ComponentScan(basePackages = "org.rest")
+@ComponentScan(basePackages = "org.restangular")
 public class AppConfig {
 }

@@ -29,7 +29,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
-
+        <!--Jackson dependencies-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -45,7 +45,7 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.5.2</version>
         </dependency>
-
+        <!--HATEOAS dependency-->
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
@@ -76,7 +76,6 @@
             <version>3.1.0</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
@@ -91,7 +90,7 @@
         </dependency>
     </dependencies>
 
-
+    <!--Build section-->
     <build>
         <finalName>rest</finalName>
         <plugins>
@@ -113,5 +112,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <developers>
+        <developer>
+            <name>Oussama Mahfoudh</name>
+            <email>mohamedoussama.mahfoudh@gmail.com</email>
+        </developer>
+
+    </developers>
 
 </project>

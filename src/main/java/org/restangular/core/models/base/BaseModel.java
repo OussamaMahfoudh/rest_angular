@@ -1,4 +1,4 @@
-package org.rest.core.models.base;
+package org.restangular.core.models.base;
 
 import java.util.Date;
 

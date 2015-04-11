@@ -1,11 +1,12 @@
-package org.rest.core.models;
+package org.restangular.rest.resources;
 
-import org.rest.core.models.base.BaseModel;
+import org.springframework.hateoas.ResourceSupport;
 
 /**
- * Created by oussama on 4/8/2015.
+ * Created by oussama on 4/9/2015.
  */
-public class BlogEntry extends BaseModel{
+public class BlogEntryResource extends ResourceSupport {
+
     private String blogEntryName;
 
     public String getBlogEntryName() {
