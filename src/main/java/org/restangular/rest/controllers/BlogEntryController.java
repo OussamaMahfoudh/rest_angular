@@ -1,37 +1,59 @@
 package org.restangular.rest.controllers;
 
-import org.restangular.core.Services.base.BlogEntryService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Preconditions;
+import org.restangular.core.services.BlogEntryService;
 import org.restangular.core.models.BlogEntry;
 import org.restangular.rest.resources.BlogEntryResource;
 import org.restangular.rest.resources.asm.BlogEntryResourceAsm;
+import org.restangular.rest.utils.RestPreconditions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by oussama on 4/8/2015.
  */
+
+@Controller
+@RequestMapping("/rest/blog-entries")
 public class BlogEntryController {
 
+    //    @Autowired
     private BlogEntryService blogEntryService;
 
-    @RequestMapping(value = "/getBlog", method = RequestMethod.POST)
+    @RequestMapping(value = "/findone/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public BlogEntry returnBlogEntry (@RequestBody BlogEntry blogEntry) {
-        BlogEntry returnBlogEntry = new BlogEntry();
-        returnBlogEntry.setBlogEntryName(blogEntry.getBlogEntryName().concat(" successful"));
-        returnBlogEntry.setId(blogEntry.getId());
-        return returnBlogEntry;
+    public BlogEntryResource findBlogEntry(@PathVariable("id") Long id) {
+        BlogEntry blogEntry = RestPreconditions.checkFound(blogEntryService.findOne(id));
+        BlogEntryResource blogEntryResource = new BlogEntryResourceAsm().toResource(blogEntry);
+        return blogEntryResource;
     }
 
-    @RequestMapping(value = "/rest/blog-entries/findone/{id}", method = RequestMethod.GET)
-    public ResponseEntity<BlogEntryResource> findBlogEntry(@PathVariable Long id){
-        BlogEntry blogEntry = blogEntryService.findOne(id);
-        if (blogEntry != null) {
-            BlogEntryResource blogEntryResource = new BlogEntryResourceAsm().toResource(blogEntry);
-            return new ResponseEntity<BlogEntryResource>(blogEntryResource, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<BlogEntryResource>(HttpStatus.NOT_FOUND);
-        }
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public BlogEntryResource createBlogEntry(@RequestBody BlogEntry blogEntry) {
+        Preconditions.checkNotNull(blogEntry);
+        BlogEntry newBlogEntry = blogEntryService.create(blogEntry);
+        BlogEntryResource blogEntryResource = new BlogEntryResourceAsm().toResource(newBlogEntry);
+        return blogEntryResource;
     }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public BlogEntryResource updateBlogEntry(@PathVariable("id") Long id, @RequestBody BlogEntry blogEntry) {
+        Preconditions.checkNotNull(blogEntry);
+        RestPreconditions.checkFound(blogEntryService.findOne(id));
+        return new BlogEntryResourceAsm().toResource(blogEntryService.update(blogEntry));
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteBlogEntry(@PathVariable("id") Long id) {
+        blogEntryService.deleteById(id);
+    }
+
 }
