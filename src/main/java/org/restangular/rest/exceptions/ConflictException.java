@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ConflictException extends RuntimeException {
 
     public ConflictException() {
-
     }
 
     public ConflictException(Throwable cause) {
