@@ -1,18 +1,26 @@
 package org.restangular.core.models;
 
+import com.sun.istack.internal.NotNull;
 import org.restangular.core.models.base.GeneratedValueEntity;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by oussama on 4/8/2015.
  */
+@AttributeOverride(name = "id", column = @Column(name = "BLOG_ENTRY_ID"))
+@Entity
 public class BlogEntry extends GeneratedValueEntity {
 
+    @NotNull
     private String title;
     private String description;
+    @Temporal(value = TemporalType.DATE)
     private Date publishDate;
+    @NotNull
     private String link;
+    @ManyToOne
     private Blog blog;
 
     public String getTitle() {

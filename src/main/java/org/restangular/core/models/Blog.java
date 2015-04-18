@@ -1,17 +1,25 @@
 package org.restangular.core.models;
 
+import com.sun.istack.internal.NotNull;
 import org.restangular.core.models.base.GeneratedValueEntity;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by oussama on 4/12/2015.
  */
+@Entity
+@AttributeOverride(name = "id", column = @Column(name = "BLOG_ID"))
 public class Blog extends GeneratedValueEntity {
 
+    @NotNull
     private String url;
+    @NotNull
     private String blogName;
+    @OneToMany
     private List<BlogEntry> blogEntryList;
+    @OneToOne
     private Account owner;
 
     public String getUrl() {

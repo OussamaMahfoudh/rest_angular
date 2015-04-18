@@ -1,20 +1,30 @@
 package org.restangular.core.models;
 
+import com.sun.istack.internal.NotNull;
 import org.restangular.core.models.base.GeneratedValueEntity;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by oussama on 4/12/2015.
  */
+@Entity
+@AttributeOverride(name = "id", column = @Column(name = "ACCOUNT_ID"))
 public class Account extends GeneratedValueEntity {
 
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
     private String email;
+    @NotNull
     private String password;
     private Boolean enabled;
+    @ManyToMany
     private List<Role> roles;
+    @OneToMany
     private List<Blog> blogs;
 
     public String getFirstName() {

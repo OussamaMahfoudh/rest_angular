@@ -1,12 +1,18 @@
 package org.restangular.core.models.base;
 
-import com.fasterxml.jackson.databind.deser.Deserializers;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 /**
  * Created by oussama on 4/12/2015.
  */
-public abstract class GeneratedValueEntity extends Deserializers.Base {
+@MappedSuperclass
+public abstract class GeneratedValueEntity extends BaseModel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     public Long getId() {

@@ -1,7 +1,9 @@
 package org.restangular.core.models;
 
+import com.sun.istack.internal.NotNull;
 import org.restangular.core.models.base.GeneratedValueEntity;
 
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 /**
@@ -9,7 +11,9 @@ import java.util.List;
  */
 public class Role extends GeneratedValueEntity {
 
+    @NotNull
     private String Role;
+    @ManyToMany
     private List<Account> users;
 
     public String getRole() {
