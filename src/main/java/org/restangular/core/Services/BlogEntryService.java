@@ -1,17 +1,41 @@
 package org.restangular.core.services;
 
 import org.restangular.core.models.BlogEntry;
+import org.restangular.core.repositories.BlogEntryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by oussama on 4/11/2015.
  */
-public interface BlogEntryService {
+@Service
+public class BlogEntryService implements ICrudService<BlogEntry> {
 
-    BlogEntry findOne(Long id);
+    @Autowired
+    private BlogEntryRepository blogEntryRepository;
 
-    BlogEntry create(BlogEntry blogEntry);
+    @Override
+    public BlogEntry findOne(Long id) {
+        return blogEntryRepository.findOne(id);
+    }
 
-    BlogEntry update(BlogEntry blogEntry);
+    @Override
+    public BlogEntry save(BlogEntry blogEntry) {
+        return blogEntryRepository.save(blogEntry);
+    }
 
-    void deleteById(Long id);
+    @Override
+    public void delete(Long id) {
+        blogEntryRepository.delete(id);
+    }
+
+    @Override
+    public List<BlogEntry> findAll() {
+        return blogEntryRepository.findAll();
+    }
+
 }
+
+

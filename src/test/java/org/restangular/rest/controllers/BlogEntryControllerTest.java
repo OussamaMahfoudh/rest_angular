@@ -105,7 +105,7 @@ public class BlogEntryControllerTest {
         blogEntry.setLink("https://blogentrylink.com");
         blogEntry.setBlog(blog);
 
-        when(blogEntryService.create(any(BlogEntry.class))).thenReturn(blogEntry);
+        when(blogEntryService.save(any(BlogEntry.class))).thenReturn(blogEntry);
 
         mockMvc.perform(post("/rest/blog-entries/create")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -130,7 +130,7 @@ public class BlogEntryControllerTest {
         blogEntry.setLink("https://blogentrylink.com");
         blogEntry.setBlog(blog);
 
-        when(blogEntryService.update(any(BlogEntry.class))).thenReturn(blogEntry);
+        when(blogEntryService.save(any(BlogEntry.class))).thenReturn(blogEntry);
         when(blogEntryService.findOne(1L)).thenReturn(blogEntry);
 
         mockMvc.perform(put("/rest/blog-entries/update/1")
