@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface BlogEntryRepository extends JpaRepository<BlogEntry, Long> {
+    BlogEntry findByTitle(String title);
 }
