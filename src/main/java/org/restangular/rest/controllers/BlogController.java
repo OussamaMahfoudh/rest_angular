@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/rest/blog")
 public class BlogController {
 
-//    @Autowired
+    @Autowired
     private BlogService blogService;
 
     @RequestMapping(value = "/findone/{id}", method = RequestMethod.GET)

@@ -3,12 +3,14 @@ package org.restangular.core.services;
 import org.restangular.core.models.Account;
 import org.restangular.core.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by oussama on 4/18/2015.
  */
+@Service
 public class AccountService implements ICrudService<Account> {
 
     @Autowired
